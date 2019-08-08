@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-backend
+spec:
+  ports:
+  - port: 6379
+  selector:
+    app: {{ .Release.Name }}-backend
+  template:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: {{ .Values.service.port }}
+  selector:
+    app: {{ .Release.Name }}-frontend

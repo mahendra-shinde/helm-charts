@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: "1.1"
+description: A Helm chart for Vote App (Python+Flask). This app uses stable/redis as dependency
+name: vote-app
+version: 0.2.0
+maintainers:
+- name: Mahendra Shinde
+  email: MahendraShinde@synergetics-india.com

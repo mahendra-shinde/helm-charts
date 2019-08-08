@@ -1,0 +1,4 @@
+dependencies:
+    - name: redis
+      version: 9.0.1
+      repository: alias:stable

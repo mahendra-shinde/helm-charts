@@ -1,0 +1,26 @@
+# Default values for python-app-helm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 
+  frontend: 1
+
+
+## Define both container images here...
+image:
+  frontend: microsoft/azure-vote-front:v1
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+nodeSelector: 
+  beta.kubernetes.io/os: linux
+
+tolerations: []
+
+affinity: {}
