@@ -119,10 +119,37 @@
 
 13. Install RBAC role and user for Tiller (To avoid error: `No available release name found`)
 
+
     ```console
     $ kubectl create serviceaccount --namespace kube-system tiller
     $ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
     $ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 
     ```
-    > 
+
+14. Default kubernetes dashboard does have restricted access to cluster (read only). to allow dashboard to manage your cluster, create following role-binding.
+
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+    name: kubernetes-dashboard
+    namespace: kube-system
+    roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+    subjects:
+    - kind: ServiceAccount
+    name: kubernetes-dashboard
+    namespace: kube-system
+    ```
+
+    ```console
+    $ kubectl apply -f role-binding.yaml
+    ```
+15. Once role-binding is deployed, access your aks dashboard using following command.
+
+    ```console
+    $ az aks browse -n aks1020 -g mixed-aks-group
+    ```
