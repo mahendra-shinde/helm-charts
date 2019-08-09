@@ -33,7 +33,7 @@
     version: 0.1.0
     maintainers:
     - name: Mahendra Shinde
-    email: MahendraShinde@synergetics-india.com
+      email: MahendraShinde@synergetics-india.com
     ```
     > Get full yaml file [here](Chart.yaml)
 
@@ -51,24 +51,24 @@
 
     ```yaml
     replicaCount: 
-    frontend: 1
-    backend: 1
+      frontend: 1
+      backend: 1
 
     ## Define both container images here...
     image:
-    backend: redis
-    frontend: microsoft/azure-vote-front:v1
+      backend: redis
+      frontend: microsoft/azure-vote-front:v1
 
     imagePullSecrets: []
     nameOverride: ""
     fullnameOverride: ""
 
     service:
-    type: ClusterIP
-    port: 80
+      type: ClusterIP
+      port: 80
 
     nodeSelector: 
-    beta.kubernetes.io/os: linux
+      beta.kubernetes.io/os: linux
 
 
     tolerations: []
@@ -85,6 +85,7 @@
 
 6.  The command should have given you k8s deployment files with placeholders replaced with values from `values.yaml` file.
     You can deploy them on cluster with command:
+    
     ```console
     # move back to parent folder (parent of chart directory)
     $ cd ..
